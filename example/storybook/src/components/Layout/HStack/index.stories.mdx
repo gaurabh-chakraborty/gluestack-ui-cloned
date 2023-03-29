@@ -1,0 +1,195 @@
+---
+title: gluestack-ui HStack Component | Installation, Usage, and API
+
+description: HStack aligns items horizontally. Row is also an alias for HStack.
+
+pageTitle: HStack
+
+pageDescription: HStack aligns items horizontally. Row is also an alias for HStack.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="components/Layout/HStack" />
+
+import { HStack, Box } from './HStack';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Table,
+  TableContainer,
+  Text,
+  InlineCode,
+} from '@gluestack/design-system';
+
+import Wrapper from '../../Wrapper';
+
+## Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+        <HStack space="md" mx="$4" width="100%">
+          <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
+          <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
+          <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
+        </HStack>
+        `,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        HStack,
+        Box,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Installation
+
+This command copies the `HStack` component to your project.
+
+```bash
+npx gluestack-ui add hstack
+```
+
+### Import
+
+```bash
+// import the component from your components folder
+import { HStack } from './components';
+```
+
+<br />
+
+### Anatomy
+
+The HStack component consists of the following parts:
+
+```jsx
+export default () => (
+  <HStack>
+    <Box>Box</Box>
+    <Box>Box</Box>
+  </HStack>
+);
+```
+
+### API Reference
+
+#### HStack
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<AppProvider>
+  <TableContainer>
+    <Table>
+      <Table.THead>
+        <Table.TR>
+          <Table.TH>
+            <Table.TText>Prop</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Type</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Default</Table.TText>
+          </Table.TH>
+          <Table.TH>
+            <Table.TText>Description</Table.TText>
+          </Table.TH>
+        </Table.TR>
+      </Table.THead>
+      <Table.TBody>
+        <Table.TR>
+          <Table.TD>
+            <Table.TText>
+              <InlineCode>space</InlineCode>
+            </Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`number | string | undefined`}</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>-</Table.TText>
+          </Table.TD>
+          <Table.TD>
+            <Table.TText>{`It sets the space between children.`}</Table.TText>
+          </Table.TD>
+        </Table.TR>
+      </Table.TBody>
+    </Table>
+  </TableContainer>
+</AppProvider>
+
+<br />
+<br />
+
+### Examples
+
+#### HStack Reversed
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<HStack space="md" reversed>
+  <Box sx={{ w: 100, h: 100, bg: '$blue300' }} />
+  <Box sx={{ w: 100, h: 100, bg: '$blue400' }} />
+  <Box sx={{ w: 100, h: 100, bg: '$blue500' }} />
+</HStack>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: { Box, Wrapper, HStack },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Advanced
+
+### Customizing the HStack
+
+We have a function called `createHStack` which can be used to create a custom HStack component. This function takes in a configuration object which contains the styled components that you want to use for the HStack. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+#### Usage
+
+```jsx
+// import the styles
+import { Root, Spacer } from '../components/core/hstack/styled-components';
+
+// import the createHStack function
+import { createHStack } from '@gluestack-ui/hstack';
+
+// Understanding the API
+const HStack = createHStack({
+  Root,
+  Spacer,
+});
+
+// Using the HStack component
+export default () => (
+  <HStack>
+    <Box />
+    <Box />
+  </HStack>
+);
+```
+
+Default styling of the component can be found in the `components/hstack` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/HStack/index.tsx) of the styled `HStack` component.

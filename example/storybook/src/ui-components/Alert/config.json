@@ -1,0 +1,5 @@
+{
+  "dependencies": {},
+  "componentDependencies": ["Icons"],
+  "keywords": ["components", "core"]
+}

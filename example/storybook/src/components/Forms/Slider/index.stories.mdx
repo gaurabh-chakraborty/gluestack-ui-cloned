@@ -1,0 +1,183 @@
+---
+title: gluestack-ui Slider Component | Installation, Usage, and API
+
+description: The Slider allows users to select options from a given range of values.
+
+pageTitle: Slider
+
+pageDescription: The Slider allows users to select options from a given range of values.
+
+showHeader: true
+---
+
+import { Meta } from '@storybook/addon-docs';
+import { useRef, useEffect, useState } from 'react';
+
+<Meta title="components/Forms/Slider" />
+
+import { Slider } from './Slider';
+import { transformedCode } from '../../../utils';
+import {
+  AppProvider,
+  CodePreview,
+  Text,
+  Center,
+} from '@gluestack/design-system';
+
+import Wrapper from '../../Wrapper';
+
+## Basic
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+<Center w={300}>
+  <Slider w="50%" defaultValue={30}>
+    <Slider.Track>
+      <Slider.FilledTrack />
+    </Slider.Track>
+    <Slider.Thumb />
+  </Slider>
+</Center>
+`,
+      transformCode: (code) => {
+        return transformedCode(code);
+      },
+      scope: {
+        Wrapper,
+        Slider,
+        Center,
+      },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+<br />
+
+## Installation
+
+This command copies the `Slider` component to your project.
+
+```bash
+npx gluestack-ui add slider
+```
+
+### Import
+
+```bash
+// import the component from your components folder
+import { Slider } from './components';
+```
+
+<br />
+
+### Anatomy
+
+The slider component consists of the following parts:
+
+```jsx
+export default () => (
+ <Slider>
+  <Slider.Track>
+    <Slider.FilledTrack />
+  </Slider.Track>
+  <Slider.Thumb />
+</Slider.FilledTrack>
+</Slider>
+);
+```
+
+### API Reference
+
+#### Box
+
+It inherits all the properties of React Native's [View](https://reactnative.dev/docs/view#props) component.
+
+<br />
+<br />
+
+### Examples
+
+#### Slider state change
+
+<AppProvider>
+  <CodePreview
+    showComponentRenderer={true}
+    showArgsController={false}
+    metaData={{
+      code: `
+function App(){
+  const [sliderValue, setSliderValue] = React.useState(40);
+  const handleChange = (value) => {
+    setSliderValue(value);
+  };
+  return (
+    <Wrapper w={300}>
+        <Slider
+          w="50%"
+          value={sliderValue}
+          onChange={(value) => {
+          handleChange(value);
+          }}>
+          <Slider.Track>
+            <Slider.FilledTrack />
+          </Slider.Track>
+          <Slider.Thumb />
+        </Slider>
+    </Wrapper>
+  );
+}
+`,
+      scope: { Wrapper, Slider, Center },
+      argsType: {},
+    }}
+  />
+</AppProvider>
+
+<br />
+
+## Advanced
+
+### Customizing the Slider
+
+For customizing the Slider, you have to map styled view to Slider. You can refer [dank.style](https://dank.style/) for more information on how to use styled components.
+
+#### Usage
+
+```jsx
+// import the styles
+import {
+  Root,
+  Thumb,
+  Track,
+  FilledTrack,
+  ThumbInteraction,
+} from '../components/core/slider/styled-components';
+
+// import the createSlider function
+import { createSlider } from '@gluestack-ui/slider';
+
+// Understanding the API
+const Slider = createSlider({
+  Root,
+  Thumb,
+  Track,
+  FilledTrack,
+  ThumbInteraction,
+});
+
+// Using the Slider component
+export default () => (
+  <Slider>
+    <Slider.Track>
+      <Slider.FilledTrack />
+    </Slider.Track>
+    <Slider.Thumb />
+  </Slider>
+);
+```
+
+Default styling of the component can be found in the `components/slider` file. For reference, you can view the [source code](https://github.com/gluestack/gluestack-ui/blob/development/example/storybook/src/ui-components/Slider/index.tsx) of the styled `Slider` component.
