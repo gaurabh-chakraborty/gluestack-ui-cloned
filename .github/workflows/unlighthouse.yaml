@@ -12,7 +12,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install Dependencies
-        run: npm add @unlighthouse/cli puppeteer
+        run: npm add @unlighthouse/cli puppeteer --force
 
       - name: Unlighthouse assertions and client
         run: unlighthouse-ci --site https://ui.gluestack.io/ --budget 75 --build-static
